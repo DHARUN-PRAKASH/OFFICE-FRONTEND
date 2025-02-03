@@ -11,7 +11,8 @@ import {
   activateFyYear,
   lockFyYear,
   activateMonth,
-  lockMonth
+  lockMonth,
+  fetchMonthUpdates
 } from './axios'; // Adjust the path as needed
 
 export const Admin = () => {
@@ -35,22 +36,23 @@ export const Admin = () => {
   }, []);
 
   useEffect(() => {
-    const socket = new WebSocket('ws://localhost:1111/month-updates'); // Replace with your WebSocket endpoint
-
-    socket.onmessage = (event) => {
-      const updatedMonthData = JSON.parse(event.data);
-      setCardsData(prevData => prevData.map(month =>
-        month.month_name === updatedMonthData.month_name ? updatedMonthData : month
-      ));
+    const fetchData = async () => {
+      const updatedMonthData = await fetchMonthUpdates();
+      if (updatedMonthData) {
+        setCardsData(prevData =>
+          prevData.map(month =>
+            month.month_name === updatedMonthData.month_name ? updatedMonthData : month
+          )
+        );
+      }
     };
 
-    socket.onerror = (error) => {
-      console.error('WebSocket error:', error);
-    };
+    fetchData(); // Call the function when the component mounts
 
-    return () => {
-      socket.close();
-    };
+    // Optional: Set up polling (e.g., every 10 seconds)
+    const interval = setInterval(fetchData, 10000);
+
+    return () => clearInterval(interval); // Cleanup on unmount
   }, []);
 
   useEffect(() => {

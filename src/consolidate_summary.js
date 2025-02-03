@@ -55,6 +55,7 @@ const ConsolidateAndSummary = () => {
   const [loading, setLoading] = useState(false);
   const [fromDate, setFromDate] = useState(null);
   const [toDate, setToDate] = useState(null);
+  const BASE_URL = "http://localhost:1111"; 
 
   const handleSnackbarClose = () => {
     setSnackbarOpen(false);
@@ -351,7 +352,7 @@ const ConsolidateAndSummary = () => {
 
 
         // Fetch and attach the additional PDF if available
-        const fileUrl = `http://localhost:1111/merged_pdf/${item.merged_pdf}`;
+        const fileUrl = `${BASE_URL}/merged_pdf/${item.merged_pdf}`;
         const pdfBlob = await fetchPDF(fileUrl);
 
         if (pdfBlob) {

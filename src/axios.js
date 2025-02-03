@@ -4,7 +4,7 @@ import { toDate } from 'date-fns';
 
 // BASE URL
 
-const BASE_URL = "http://localhost:1111";
+const BASE_URL = "http://localhost:1111";  //90
 
 
 
@@ -395,3 +395,16 @@ export const dateFilter = async (formattedFDate, formattedTDate) => {
     throw error;
   }
 };
+
+// ADMIN MONTH FETCH
+
+export const fetchMonthUpdates = async () => {
+  try {
+    const response = await axios.get(`${BASE_URL}/month-updates`); // Replace with your actual API endpoint
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching month updates:', error);
+    return null; // Handle error gracefully
+  }
+};
+
