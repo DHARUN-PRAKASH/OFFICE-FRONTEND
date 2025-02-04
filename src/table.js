@@ -324,7 +324,7 @@ const Table = () => {
       renderCell: (params) => (
         <IconButton
           component="a"
-          href={`http://localhost:1111/merged_pdf/${params.value}`}
+          href={`http://10.167.1.7:90/merged_pdf/${params.value}`}
           target="_blank"
           rel="noopener noreferrer"
         >

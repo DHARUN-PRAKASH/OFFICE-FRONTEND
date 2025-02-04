@@ -4,7 +4,7 @@ import { toDate } from 'date-fns';
 
 // BASE URL
 
-const BASE_URL = "http://localhost:1111";  //90
+const BASE_URL = "http://10.167.1.7:90";  //90
 
 
 

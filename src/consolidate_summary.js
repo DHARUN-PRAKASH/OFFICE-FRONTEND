@@ -55,7 +55,7 @@ const ConsolidateAndSummary = () => {
   const [loading, setLoading] = useState(false);
   const [fromDate, setFromDate] = useState(null);
   const [toDate, setToDate] = useState(null);
-  const BASE_URL = "http://localhost:1111"; 
+  const BASE_URL = "http://10.167.1.7:90"; 
 
   const handleSnackbarClose = () => {
     setSnackbarOpen(false);
